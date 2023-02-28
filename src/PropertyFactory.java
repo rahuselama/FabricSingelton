@@ -1,6 +1,15 @@
 public class PropertyFactory {
+//Using Singelton Pattern to create only one object of property Factory
+public static PropertyFactory instance;
+public static PropertyFactory getInstance(){
+    if(instance==null){
+        instance = new PropertyFactory();
+    } return instance;
+}
 
-        public static Property buildProperty (PropertyType model) {
+private PropertyFactory(){}
+
+        public Property buildProperty (PropertyType model) {
             Property property = null;
             switch (model) {
                 case APPARTEMENT:
