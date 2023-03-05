@@ -11,9 +11,9 @@ private PropertyFactory(){}
 
         public Property buildProperty (PropertyType model) {
             Property property = null;
-            switch (model) {
-                case APPARTEMENT:
-                    property = new Appartement();
+            switch (model)  {
+                case APPARTMENT:
+                    property = new Appartment();
                     break;
 
                 case CONDO:

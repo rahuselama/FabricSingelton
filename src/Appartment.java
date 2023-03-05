@@ -1,18 +1,19 @@
-public class Appartement extends Property{
+public class Appartment extends Property{
 
     protected int unitNumber;
-    Appartement() {
-            super(PropertyType.APPARTEMENT);
+    Appartment() {
+            super(PropertyType.APPARTMENT);
             construct();
         }
 
         @Override
         protected void construct() {
-            System.out.println("Building Appartement");
+            System.out.println("Building Appartment");
             arrangeParts();
             unitNumber = DisplayMenu.promptUser("Enter unit number").nextInt();
             System.out.println(unitNumber +" "+ propertyId);
+
             // add accessories
-        }
+       }
     }
 

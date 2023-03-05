@@ -7,7 +7,9 @@ public abstract class Property {
     private int bedroomNumber;
     private int bathroomNumber;
     private double sqFootage;
-    private boolean available=false;
+    private boolean hasLease;
+    private String choice;
+
 
     //setters
     public void setStreetName(String streetName) {
@@ -29,7 +31,11 @@ public abstract class Property {
     public void setZip(int zip) {
         this.zip = zip;
     }
-//getters
+
+    public boolean hasLease() {
+        return hasLease;
+    }
+    //getters
 
     public int getPropertyId() {
         return propertyId;
@@ -58,9 +64,17 @@ public abstract class Property {
 
     protected void arrangeParts() {
         propertyId = DisplayMenu.promptUser("Enter property ID").nextInt();
-        // Do one time processing here
-    }
+        choice = DisplayMenu.promptUser("Is this property available. Write yes/no").next();
+        if (choice.equals("yes")) {
+            hasLease = false;
+        } else if (choice.equals("no")) {
+            hasLease = true;
+        } else {
+            System.out.println("Invalid input, back to main.");
 
+            // Do one time processing here
+        }
+    }
     // Do subclass level processing in this method
     protected abstract void construct();
 
@@ -74,4 +88,7 @@ public abstract class Property {
         this.model = model;
     }
 
+    public void signLease(){
+        hasLease=true;
+}
 }

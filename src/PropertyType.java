@@ -1,5 +1,5 @@
 public enum PropertyType {
 
-        APPARTEMENT, CONDO, HOUSE
+        APPARTMENT, CONDO, HOUSE
 
 }
