@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Subscriber extends Person
-        implements IObserver{
+        implements Observer{
 
     private boolean hasSubscription = true;
     public Subscriber(String name, String lastName, int personID, String email) {
@@ -9,7 +9,8 @@ public class Subscriber extends Person
     }
 
     @Override
-    public void handleEvent(ArrayList<Property> availableForRent) {
-System.out.println("Dear" + getName()+ "\n we have new available properties \n" + availableForRent );
+    public void sendEmail() {
+        // how do we send a email here lol
+        System.out.println("Email sent to: " + this.getEmail());
     }
 }
