@@ -58,6 +58,7 @@ class RentalUnit implements Subject{
         this.tenant = null;
         this.lease = null;
         status = 0;
+        this.property.setRented(0);
         notifyPotentialTenant();
     }
 

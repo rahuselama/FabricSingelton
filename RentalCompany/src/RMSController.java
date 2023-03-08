@@ -88,4 +88,39 @@ class RMSController {
         }
         return wantedProperty;
     }
+    public void addPaymentRecord(RentalUnit rentalUnit) {
+        system.getAccounting().addPaymentRecord(rentalUnit, true);
+    }
+
+    public RentalUnit getRentalUnitWithTenant(Tenant tenant) {
+        RentalUnit rentalUnitWithTenant = null;
+        for (RentalUnit rentalUnit: system.getRentalUnits()) {
+            if (rentalUnit.getTenant().getID() == tenant.getID()) {
+                rentalUnitWithTenant = rentalUnit;
+                break;
+            }
+        }
+        return rentalUnitWithTenant;
+    }
+
+    public boolean checkRentPaid(RentalUnit rU) {
+        return system.getAccounting().isPaid(rU);
+    }
+
+    public RentalUnit getRentUnitWithPropertyID(int id) {
+        RentalUnit rentalUnitWithPropertyID = null;
+        for (RentalUnit rentalUnit: system.getRentalUnits()) {
+            if (rentalUnit.getProperty().getPropertyID() == id) {
+                rentalUnitWithPropertyID = rentalUnit;
+                break;
+            }
+        }
+        return rentalUnitWithPropertyID;
+    }
+
+    public void endLease(RentalUnit rU) {
+        system.removeLease(rU.getLease());
+        system.removeRentalUnit(rU);
+        rU.endLease();
+    }
 }

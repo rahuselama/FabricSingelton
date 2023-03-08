@@ -92,6 +92,14 @@ class RentalManagementSystem {
         rentalUnits.add(rentalUnit);
     }
 
+    public List<RentalUnit> getRentalUnits() {
+        return rentalUnits;
+    }
+
+    public void setRentalUnits(List<RentalUnit> rentalUnits) {
+        this.rentalUnits = rentalUnits;
+    }
+
     public void removeRentalUnit(RentalUnit rentalUnit) {
         rentalUnits.remove(rentalUnit);
     }
@@ -143,5 +151,7 @@ class RentalManagementSystem {
         }
         return allLeases;
     }
+
+
 }
 

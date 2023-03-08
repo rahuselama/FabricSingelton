@@ -39,7 +39,10 @@ class AdminView {
             System.out.println("6. Display rented units");
             System.out.println("7. Display vacant units");
             System.out.println("8. Display all leases");
-            System.out.println("9. Exit");
+            System.out.println("9. Pay Rent");
+            System.out.println("10. End Lease for a property");
+            System.out.println("11. Check the rent payment status");
+            System.out.println("12. Exit");
 
             System.out.print("Enter your choice: ");
 
@@ -55,7 +58,10 @@ class AdminView {
                 case 6 -> displayRentedUnits();
                 case 7 -> displayVacantUnits();
                 case 8 -> displayAllLeases();
-                case 9 -> System.exit(0);
+                case 9 -> payRent();
+                case 10 -> endLease();
+                case 11 -> checkPayment();
+                case 12 -> System.exit(0);
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -184,9 +190,6 @@ class AdminView {
 
         System.out.println("Lease added");
 
-        System.out.println("Enter the propertyID you want to pay for");
-        int propertyID = scanner.nextInt();
-
 
 
 
@@ -225,6 +228,50 @@ class AdminView {
 
     }
 
+
+    public void payRent() {
+        System.out.println("\n==== Pay Rent ====");
+        System.out.print("Enter the tenant ID: ");
+
+        int tenantID = scanner.nextInt();
+
+        Tenant tenant = controller.getATenant(tenantID);
+        if (tenant == null) {
+            System.out.println("Tenant Not Found");
+            return;
+        }
+        RentalUnit rU = controller.getRentalUnitWithTenant(tenant);
+
+        if (rU == null) {
+            System.out.println("No rental unit / lease found with this tenant");
+            return;
+        }
+        controller.addPaymentRecord(rU);
+
+        System.out.println("Rent payment was made!");
+
+
+    }
+
+    public void endLease() {
+        System.out.println("Terminate Lease for which property? Enter ID please");
+        int propertyID = scanner.nextInt();
+        RentalUnit rU = controller.getRentUnitWithPropertyID(propertyID);
+        controller.endLease(rU);
+    }
+
+    public void checkPayment() {
+        System.out.println("Check a lease payment status for a property by entering its ID");
+        int propertyID = scanner.nextInt();
+        RentalUnit rU = controller.getRentUnitWithPropertyID(propertyID);
+
+        if (controller.checkRentPaid(rU)) {
+            System.out.println("Rent paid for this unit!");
+        } else {
+            System.out.println("Payment was not made");
+        }
+
+    }
 
 
 
